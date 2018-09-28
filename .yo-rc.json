@@ -1,0 +1,38 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.webapps.creghip",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "5.3.4",
+    "applicationType": "monolith",
+    "baseName": "creghip",
+    "packageName": "com.webapps.creghip",
+    "packageFolder": "com/webapps/creghip",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "ODc0ZGI5ZjE3MjRhNGY5NzBiYzJlZjlmOTE0NWUyNmVlNWEzOGUwYzkwZDFlZTdlMmNiN2JiZDYwMjRkZWIzNzliZjk1NGUxMTkzMDg5ZjlhYzI2Yjc5MGEyMmEwMDRmN2M4ZjcyZGRhMjRlMDI5ZDc0NWFiYWU5ZDNkMTc2Mjg=",
+    "clientFramework": "angularX",
+    "useSass": false,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "languages": [
+      "en",
+      "hu"
+    ]
+  }
+}
