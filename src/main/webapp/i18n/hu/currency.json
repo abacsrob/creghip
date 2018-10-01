@@ -1,0 +1,23 @@
+
+{
+    "creghipApp": {
+        "currency" : {
+            "home": {
+                "title": "Currencies",
+                "createLabel": "Egy új Currency létrehozása",
+                "createOrEditLabel": "Hozzon létre, vagy módosítson Currencyt"
+            },
+            "created": "Egy új Currency lett létrehozva {{ param }} azonosítóval",
+            "updated": "A Currency módosítva lett {{ param }} azonosítóval",
+            "deleted": "A Currency törölve lett {{ param }} azonosítóval",
+            "delete": {
+                "question": "Biztos benne, hogy törölni szeretné az Currencyt {{ id }} azonosítóval?"
+            },
+            "detail": {
+                "title": "Currency"
+            },
+            "currencyName": "Currency Name",
+            "userAccount": "User Account"
+        }
+    }
+}

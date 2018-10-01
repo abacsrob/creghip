@@ -1,0 +1,25 @@
+
+{
+    "creghipApp": {
+        "transaction" : {
+            "home": {
+                "title": "Transactions",
+                "createLabel": "Egy új Transaction létrehozása",
+                "createOrEditLabel": "Hozzon létre, vagy módosítson Transactiont"
+            },
+            "created": "Egy új Transaction lett létrehozva {{ param }} azonosítóval",
+            "updated": "A Transaction módosítva lett {{ param }} azonosítóval",
+            "deleted": "A Transaction törölve lett {{ param }} azonosítóval",
+            "delete": {
+                "question": "Biztos benne, hogy törölni szeretné az Transactiont {{ id }} azonosítóval?"
+            },
+            "detail": {
+                "title": "Transaction"
+            },
+            "amountIn": "Amount In",
+            "amountOut": "Amount Out",
+            "transactionDate": "Transaction Date",
+            "transactionGroup": "Transaction Group"
+        }
+    }
+}

@@ -1,0 +1,26 @@
+
+{
+    "creghipApp": {
+        "transaction" : {
+            "home": {
+                "title": "Transactions",
+                "createLabel": "Create a new Transaction",
+                "createOrEditLabel": "Create or edit a Transaction"
+            },
+            "created": "A new Transaction is created with identifier {{ param }}",
+            "updated": "A Transaction is updated with identifier {{ param }}",
+            "deleted": "A Transaction is deleted with identifier {{ param }}",
+            "delete": {
+                "questionSingular": "Are you sure you want to delete the Transaction with id ({{ id }})?",
+                "question": "Are you sure you want to delete the Transactions with ids ({{ id }})?"
+            },
+            "detail": {
+                "title": "Transaction"
+            },
+            "amountIn": "Amount In",
+            "amountOut": "Amount Out",
+            "transactionDate": "Transaction Date",
+            "transactionGroup": "Transaction Group"
+        }
+    }
+}

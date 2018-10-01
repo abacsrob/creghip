@@ -1,0 +1,37 @@
+{
+    "name": "Transaction",
+    "fields": [
+        {
+            "fieldName": "amountIn",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "amountOut",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "transactionDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "transactionGroup",
+            "otherEntityName": "transactionGroup",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20180928170549",
+    "entityTableName": "transaction",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

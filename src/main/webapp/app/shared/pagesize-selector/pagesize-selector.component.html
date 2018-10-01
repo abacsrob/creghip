@@ -1,0 +1,10 @@
+<div class="row justify-content-center">
+    Rows per page:
+</div>
+<div class="row justify-content-center">
+    <span>
+        <select class="custom-select" (change)="pageSizeChanged.emit(itemsPerPage)" [(ngModel)]="itemsPerPage">
+            <option *ngFor="let pageSize of pageSizes" [ngValue]="pageSize">{{pageSize}}</option>
+        </select>
+    </span>
+</div>

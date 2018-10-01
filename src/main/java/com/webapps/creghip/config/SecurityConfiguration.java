@@ -1,8 +1,8 @@
 package com.webapps.creghip.config;
 
-import com.webapps.creghip.security.*;
-import com.webapps.creghip.security.jwt.*;
-
+import com.webapps.creghip.security.AuthoritiesConstants;
+import com.webapps.creghip.security.jwt.JWTConfigurer;
+import com.webapps.creghip.security.jwt.TokenProvider;
 import org.springframework.beans.factory.BeanInitializationException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -106,7 +106,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/api/authenticate").permitAll()
             .antMatchers("/api/account/reset-password/init").permitAll()
             .antMatchers("/api/account/reset-password/finish").permitAll()
-            .antMatchers("/api/**").authenticated()
+//            .antMatchers("/api/**").authenticated()
             .antMatchers("/management/health").permitAll()
             .antMatchers("/management/info").permitAll()
             .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)

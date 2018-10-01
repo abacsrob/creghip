@@ -1,0 +1,24 @@
+
+{
+    "creghipApp": {
+        "currency" : {
+            "home": {
+                "title": "Currencies",
+                "createLabel": "Create a new Currency",
+                "createOrEditLabel": "Create or edit a Currency"
+            },
+            "created": "A new Currency is created with identifier {{ param }}",
+            "updated": "A Currency is updated with identifier {{ param }}",
+            "deleted": "A Currency is deleted with identifier {{ param }}",
+            "delete": {
+                "questionSingular": "Are you sure you want to delete the Currency with id ({{ id }})?",
+                "question": "Are you sure you want to delete the Currencies with ids ({{ id }})?"
+            },
+            "detail": {
+                "title": "Currency"
+            },
+            "currencyName": "Currency Name",
+            "userAccount": "User Account"
+        }
+    }
+}

@@ -1,10 +1,12 @@
 /**
  * Angular bootstrap Date adapter
  */
-import { Injectable } from '@angular/core';
-import { NgbDateAdapter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { Moment } from 'moment';
+import {Injectable} from '@angular/core';
+import {NgbDateAdapter, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 import * as moment from 'moment';
+import {Moment} from 'moment';
+
+import {DATE_FORMAT} from 'app/shared';
 
 @Injectable()
 export class NgbDateMomentAdapter extends NgbDateAdapter<Moment> {
@@ -16,6 +18,13 @@ export class NgbDateMomentAdapter extends NgbDateAdapter<Moment> {
     }
 
     toModel(date: NgbDateStruct): Moment {
-        return date ? moment(date.year + '-' + date.month + '-' + date.day, 'YYYY-MM-DD') : null;
+        if (date) {
+            let fmt = DATE_FORMAT;
+            fmt = fmt.replace('YYYY', date.year.toString());
+            fmt = fmt.replace('MM', date.month.toString());
+            fmt = fmt.replace('DD', date.day.toString());
+            return moment(fmt, DATE_FORMAT);
+        }
+        return null;
     }
 }

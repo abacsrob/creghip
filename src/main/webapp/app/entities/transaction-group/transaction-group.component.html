@@ -1,0 +1,97 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="creghipApp.transactionGroup.home.title">Transaction Groups</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-transaction-group" [routerLink]="['/transaction-group/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="creghipApp.transactionGroup.home.createLabel">
+            Create new Transaction Group
+            </span>
+        </button>
+        <button id="test-select-all-rows"
+                class="btn btn-danger float-right delete-all-button"
+                [disabled]="selectedRowIds.length === 0"
+                type="submit"
+                [routerLink]="['/', { outlets: { popup: 'transaction-group/'+ selectedRowIds.join(',') + '/delete'} }]"
+                replaceUrl="true"
+                queryParamsHandling="merge">
+            <span jhiTranslate="global.menu.entities.deleteSelected"></span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="transactionGroups">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+                <th class="checkbox-selector-column">
+                    <div class="form-check">
+                        <input type="checkbox"
+                               #allRowsChecked
+                               class="form-check-input position-static"
+                               (change)="selectAllRows(allRowsChecked)"
+                               [checked]="selectedRowIds.length >= transactionGroups.length">
+                    </div>
+                </th>
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="name"><span jhiTranslate="creghipApp.transactionGroup.name">Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="userAccount.id"><span jhiTranslate="creghipApp.transactionGroup.userAccount">User Account</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let transactionGroup of transactionGroups ;trackBy: trackId" [ngClass]="selectedRowIds.includes(transactionGroup.id) ? 'table-success' : ''">
+                <td>
+                    <div class="form-check">
+                        <input type="checkbox"
+                               #rowChecked
+                               class="form-check-input position-static"
+                               [checked]="selectedRowIds.includes(transactionGroup.id)"
+                               [value]="transactionGroup.id"
+                               (change)="selectRow(rowChecked)">
+                    </div>
+                </td>
+                <td><a [routerLink]="['/transaction-group', transactionGroup.id, 'view' ]">{{transactionGroup.id}}</a></td>
+                <td>{{transactionGroup.name}}</td>
+                <td>
+                    <div *ngIf="transactionGroup.userAccount">
+                        <a [routerLink]="['../user-account', transactionGroup.userAccount?.id, 'view' ]" >{{transactionGroup.userAccount?.accountName}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/transaction-group', transactionGroup.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/transaction-group', transactionGroup.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'transaction-group/'+ transactionGroup.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="transactionGroups && transactionGroups.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+        <jhi-pagesize-selector [itemsPerPage]="itemsPerPage" (pageSizeChanged)="itemsPerPage=$event; loadAll()"></jhi-pagesize-selector>
+    </div>
+</div>

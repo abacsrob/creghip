@@ -7,6 +7,11 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entitások",
+                "currency": "Currency",
+                "userAccount": "User Account",
+                "transactionGroup": "Transaction Group",
+                "transaction": "Transaction",
+                "deleteSelected": "Kiválasztott sorok törlése",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -129,7 +134,8 @@
         "userexists": "Ezzel a felhasználónévvel már regisztráltak!",
         "emailexists": "Ezzel az email címmel már regisztráltak!",
         "idexists": "Az új {{entityName}}-nak/nek nem lehet még ID-ja",
-        "idnull": "Invalid ID"
+        "idnull": "Invalid ID",
+        "amountinvalid": "A tranzakció összege nem megfelelő! Kötelezően csak az egyik összeg mezőt adja meg"
     },
     "footer": "Ez a lábléc."
 }

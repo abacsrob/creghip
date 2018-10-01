@@ -1,0 +1,24 @@
+
+{
+    "creghipApp": {
+        "transactionGroup" : {
+            "home": {
+                "title": "TransactionGroups",
+                "createLabel": "Egy új Transaction Group létrehozása",
+                "createOrEditLabel": "Hozzon létre, vagy módosítson Transaction Groupt"
+            },
+            "created": "Egy új Transaction Group lett létrehozva {{ param }} azonosítóval",
+            "updated": "A Transaction Group módosítva lett {{ param }} azonosítóval",
+            "deleted": "A Transaction Group törölve lett {{ param }} azonosítóval",
+            "delete": {
+                "question": "Biztos benne, hogy törölni szeretné az Transaction Groupt {{ id }} azonosítóval?"
+            },
+            "detail": {
+                "title": "Transaction Group"
+            },
+            "name": "Name",
+            "transaction": "Transaction",
+            "userAccount": "User Account"
+        }
+    }
+}

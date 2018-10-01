@@ -1,0 +1,24 @@
+
+{
+    "creghipApp": {
+        "userAccount" : {
+            "home": {
+                "title": "UserAccounts",
+                "createLabel": "Egy új User Account létrehozása",
+                "createOrEditLabel": "Hozzon létre, vagy módosítson User Accountt"
+            },
+            "created": "Egy új User Account lett létrehozva {{ param }} azonosítóval",
+            "updated": "A User Account módosítva lett {{ param }} azonosítóval",
+            "deleted": "A User Account törölve lett {{ param }} azonosítóval",
+            "delete": {
+                "question": "Biztos benne, hogy törölni szeretné az User Accountt {{ id }} azonosítóval?"
+            },
+            "detail": {
+                "title": "User Account"
+            },
+            "accountName": "Account Name",
+            "currency": "Currency",
+            "transactionGroup": "Transaction Group"
+        }
+    }
+}

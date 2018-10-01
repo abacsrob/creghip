@@ -1,0 +1,97 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="creghipApp.userAccount.home.title">User Accounts</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-user-account" [routerLink]="['/user-account/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="creghipApp.userAccount.home.createLabel">
+            Create new User Account
+            </span>
+        </button>
+        <button id="delete-selected-rows"
+                class="btn btn-danger float-right delete-all-button"
+                [disabled]="selectedRowIds.length === 0"
+                type="submit"
+                [routerLink]="['/', { outlets: { popup: 'user-account/'+ selectedRowIds.join(',') + '/delete'} }]"
+                replaceUrl="true"
+                queryParamsHandling="merge">
+            <span jhiTranslate="global.menu.entities.deleteSelected"></span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="userAccounts">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th class="checkbox-selector-column">
+                <div class="form-check">
+                    <input type="checkbox"
+                           #allRowsChecked
+                           class="form-check-input position-static"
+                           (change)="selectAllRows(allRowsChecked)"
+                           [checked]="selectedRowIds.length >= userAccounts.length">
+                </div>
+            </th>
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="accountName"><span jhiTranslate="creghipApp.userAccount.accountName">Account Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="currency.currencyName"><span jhiTranslate="creghipApp.userAccount.currency">Currency</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let userAccount of userAccounts ;trackBy: trackId" [ngClass]="selectedRowIds.includes(userAccount.id) ? 'table-success' : ''">
+                <td>
+                    <div class="form-check">
+                        <input type="checkbox"
+                               #rowChecked
+                               class="form-check-input position-static"
+                               [checked]="selectedRowIds.includes(userAccount.id)"
+                               [value]="userAccount.id"
+                               (change)="selectRow(rowChecked)">
+                    </div>
+                </td>
+                <td><a [routerLink]="['/user-account', userAccount.id, 'view' ]">{{userAccount.id}}</a></td>
+                <td>{{userAccount.accountName}}</td>
+                <td>
+                    <div *ngIf="userAccount.currency">
+                        <a [routerLink]="['../currency', userAccount.currency?.id, 'view' ]" >{{userAccount.currency?.currencyName}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/user-account', userAccount.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/user-account', userAccount.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'user-account/'+ userAccount.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="userAccounts && userAccounts.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+        <jhi-pagesize-selector [itemsPerPage]="itemsPerPage" (pageSizeChanged)="itemsPerPage=$event; loadAll()"></jhi-pagesize-selector>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="transaction">
+            <h2><span jhiTranslate="creghipApp.transaction.detail.title">Transaction</span> {{transaction.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <div [hidden]="!transaction.amountIn">
+                    <dt><span jhiTranslate="creghipApp.transaction.amountIn">Amount In</span></dt>
+                    <dd>
+                        <span>{{transaction.amountIn}}</span>
+                    </dd>
+                </div>
+                <div [hidden]="!transaction.amountOut">
+                    <dt><span jhiTranslate="creghipApp.transaction.amountOut">Amount Out</span></dt>
+                    <dd>
+                        <span>{{transaction.amountOut}}</span>
+                    </dd>
+                </div>
+                <dt><span jhiTranslate="creghipApp.transaction.transactionDate">Transaction Date</span></dt>
+                <dd>
+                    <span>{{transaction.transactionDate | customDateFormat}}</span>
+                </dd>
+                <dt><span jhiTranslate="creghipApp.transaction.transactionGroup">Transaction Group</span></dt>
+                <dd>
+                    <div *ngIf="transaction.transactionGroup">
+                        <a [routerLink]="['/transaction-group', transaction.transactionGroup?.id, 'view']">{{transaction.transactionGroup?.name}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/transaction', transaction.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

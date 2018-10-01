@@ -1,0 +1,57 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-transaction-heading" jhiTranslate="creghipApp.transaction.home.createOrEditLabel">Create or edit a Transaction</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!transaction.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="transaction.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="creghipApp.transaction.amountIn" for="field_amountIn">Amount In</label>
+                    <input type="number" class="form-control" name="amountIn" id="field_amountIn"
+                        [(ngModel)]="transaction.amountIn" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="creghipApp.transaction.amountOut" for="field_amountOut">Amount Out</label>
+                    <input type="number" class="form-control" name="amountOut" id="field_amountOut"
+                        [(ngModel)]="transaction.amountOut" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="creghipApp.transaction.transactionDate" for="field_transactionDate">Transaction Date</label>
+                    <div class="input-group">
+                        <input id="field_transactionDate" type="text" class="form-control" name="transactionDate" ngbDatepicker  #transactionDateDp="ngbDatepicker" [(ngModel)]="transaction.transactionDate"
+                        required/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="transactionDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div [hidden]="!(editForm.controls.transactionDate?.dirty && editForm.controls.transactionDate?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.transactionDate?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="creghipApp.transaction.transactionGroup" for="field_transactionGroup">Transaction Group</label>
+                    <select class="form-control" id="field_transactionGroup" name="transactionGroup" [(ngModel)]="transaction.transactionGroup" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="transactionGroupOption.id === transaction.transactionGroup?.id ? transaction.transactionGroup : transactionGroupOption" *ngFor="let transactionGroupOption of transactiongroups; trackBy: trackTransactionGroupById">{{transactionGroupOption.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

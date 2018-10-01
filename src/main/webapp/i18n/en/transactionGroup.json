@@ -1,0 +1,25 @@
+
+{
+    "creghipApp": {
+        "transactionGroup" : {
+            "home": {
+                "title": "Transaction Groups",
+                "createLabel": "Create a new Transaction Group",
+                "createOrEditLabel": "Create or edit a Transaction Group"
+            },
+            "created": "A new Transaction Group is created with identifier {{ param }}",
+            "updated": "A Transaction Group is updated with identifier {{ param }}",
+            "deleted": "A Transaction Group is deleted with identifier {{ param }}",
+            "delete": {
+                "questionSingular": "Are you sure you want to delete the Transaction Group with id ({{ id }})?",
+                "question": "Are you sure you want to delete the Transaction Groups with ids ({{ id }})?"
+            },
+            "detail": {
+                "title": "Transaction Group"
+            },
+            "name": "Name",
+            "transaction": "Transaction",
+            "userAccount": "User Account"
+        }
+    }
+}

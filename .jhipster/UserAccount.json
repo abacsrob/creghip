@@ -1,0 +1,39 @@
+{
+    "name": "UserAccount",
+    "fields": [
+        {
+            "fieldName": "accountName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 100
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "currency",
+            "otherEntityName": "currency",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "userAccount"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "transactionGroup",
+            "otherEntityName": "transactionGroup",
+            "otherEntityRelationshipName": "userAccount"
+        }
+    ],
+    "changelogDate": "20180928170547",
+    "entityTableName": "user_account",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

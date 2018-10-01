@@ -1,0 +1,35 @@
+entity Currency {
+	currencyName String required maxlength(3)
+}
+
+entity UserAccount {
+	accountName String required maxlength(100)
+}
+
+entity TransactionGroup {
+	name String required maxlength(100)
+}
+
+entity Transaction {
+	amountIn BigDecimal,
+    amountOut BigDecimal,
+    transactionDate LocalDate required,
+}
+
+relationship OneToOne {
+	UserAccount to Currency
+}
+
+relationship OneToMany {
+	UserAccount to TransactionGroup
+}
+
+relationship OneToMany {
+	TransactionGroup to Transaction
+}
+
+paginate Currency with pagination
+paginate UserAccount with pagination
+paginate TransactionGroup with pagination
+paginate Transaction with pagination
+

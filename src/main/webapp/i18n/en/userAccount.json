@@ -1,0 +1,25 @@
+
+{
+    "creghipApp": {
+        "userAccount" : {
+            "home": {
+                "title": "User Accounts",
+                "createLabel": "Create a new User Account",
+                "createOrEditLabel": "Create or edit a User Account"
+            },
+            "created": "A new User Account is created with identifier {{ param }}",
+            "updated": "A User Account is updated with identifier {{ param }}",
+            "deleted": "A User Account is deleted with identifier {{ param }}",
+            "delete": {
+                "questionSingular": "Are you sure you want to delete the User Account with id ({{ id }})?",
+                "question": "Are you sure you want to delete the User Accounts with ids ({{ id }})?"
+            },
+            "detail": {
+                "title": "User Account"
+            },
+            "accountName": "Account Name",
+            "currency": "Currency",
+            "transactionGroup": "Transaction Group"
+        }
+    }
+}
