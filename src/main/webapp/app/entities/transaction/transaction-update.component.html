@@ -35,13 +35,23 @@
                         </small>
                     </div>
                 </div>
-
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="creghipApp.transaction.exchangeEntry" for="field_exchangeEntry">Exchange Entry</label>
+                    <select class="form-control" id="field_exchangeEntry" name="exchangeEntry" [(ngModel)]="transaction.exchangeEntry" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="exchangeEntryOption.id === transaction.exchangeEntry?.id ? transaction.exchangeEntry : exchangeEntryOption" *ngFor="let exchangeEntryOption of exchangeEntries; trackBy: trackExchangeEntryById">{{exchangeEntryOption.description}}</option>
+                    </select>
+                </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="creghipApp.transaction.transactionGroup" for="field_transactionGroup">Transaction Group</label>
                     <select class="form-control" id="field_transactionGroup" name="transactionGroup" [(ngModel)]="transaction.transactionGroup" >
                         <option [ngValue]="null"></option>
                         <option [ngValue]="transactionGroupOption.id === transaction.transactionGroup?.id ? transaction.transactionGroup : transactionGroupOption" *ngFor="let transactionGroupOption of transactiongroups; trackBy: trackTransactionGroupById">{{transactionGroupOption.name}}</option>
                     </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="creghipApp.transaction.remark" for="field_remark">Remark</label>
+                    <input type="text" class="form-control" name="remark" id="field_remark" [(ngModel)]="transaction.remark"/>
                 </div>
             </div>
             <div>

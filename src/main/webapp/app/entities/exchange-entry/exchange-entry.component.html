@@ -1,17 +1,17 @@
 <div>
     <h2 id="page-heading">
-        <span jhiTranslate="creghipApp.transaction.home.title">Transactions</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-transaction" [routerLink]="['/transaction/new']">
+        <span jhiTranslate="creghipApp.exchangeEntry.home.title">Exchange Entries</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-exchange-entry" [routerLink]="['/exchange-entry/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
-            <span  jhiTranslate="creghipApp.transaction.home.createLabel">
-            Create new Transaction
+            <span  jhiTranslate="creghipApp.exchangeEntry.home.createLabel">
+            Create new Exchange Entry
             </span>
         </button>
-        <button id="test-select-all-rows"
+        <button id="delete-selected-rows"
                 class="btn btn-danger float-right delete-all-button"
                 [disabled]="selectedRowIds.length === 0"
                 type="submit"
-                [routerLink]="['/', { outlets: { popup: 'transaction/'+ selectedRowIds.join(',') + '/delete'} }]"
+                [routerLink]="['/', { outlets: { popup: 'exchange-entry/'+ selectedRowIds.join(',') + '/delete'} }]"
                 replaceUrl="true"
                 queryParamsHandling="merge">
             <span jhiTranslate="global.menu.entities.deleteSelected"></span>
@@ -19,7 +19,7 @@
     </h2>
     <jhi-alert></jhi-alert>
     <br/>
-    <div class="table-responsive" *ngIf="transactions">
+    <div class="table-responsive" *ngIf="exchangeEntries">
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
@@ -29,62 +29,44 @@
                                #allRowsChecked
                                class="form-check-input position-static"
                                (change)="selectAllRows(allRowsChecked)"
-                               [checked]="selectedRowIds.length >= transactions.length">
+                               [checked]="selectedRowIds.length >= exchangeEntries.length">
                     </div>
                 </th>
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="amountIn"><span jhiTranslate="creghipApp.transaction.amountIn">Amount In</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="amountOut"><span jhiTranslate="creghipApp.transaction.amountOut">Amount Out</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="transactionDate"><span jhiTranslate="creghipApp.transaction.transactionDate">Transaction Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="exchangeEntry.description"><span jhiTranslate="creghipApp.transaction.exchangeEntry">Exchange Entry</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="transactionGroup.name"><span jhiTranslate="creghipApp.transaction.transactionGroup">Transaction Group</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="remark"><span jhiTranslate="creghipApp.transaction.remark">Remark</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="description"><span jhiTranslate="creghipApp.exchangeEntry.description">Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let transaction of transactions ;trackBy: trackId" [ngClass]="selectedRowIds.includes(transaction.id) ? 'table-success' : ''">
+            <tr *ngFor="let exchangeEntry of exchangeEntries ;trackBy: trackId" [ngClass]="selectedRowIds.includes(exchangeEntry.id) ? 'table-success' : ''">
                 <td>
                     <div class="form-check">
                         <input type="checkbox"
                                #rowChecked
                                class="form-check-input position-static"
-                               [checked]="selectedRowIds.includes(transaction.id)"
-                               [value]="transaction.id"
+                               [checked]="selectedRowIds.includes(exchangeEntry.id)"
+                               [value]="exchangeEntry.id"
                                (change)="selectRow(rowChecked)">
                     </div>
                 </td>
-                <td><a [routerLink]="['/transaction', transaction.id, 'view' ]">{{transaction.id}}</a></td>
-                <td>{{transaction.amountIn}}</td>
-                <td>{{transaction.amountOut}}</td>
-                <td>{{transaction.transactionDate | customDateFormat}}</td>
-                <td>
-                    <div *ngIf="transaction.exchangeEntry">
-                        <a [routerLink]="['../exchange-entry', transaction.exchangeEntry?.id, 'view' ]" >{{transaction.exchangeEntry?.description}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="transaction.transactionGroup">
-                        <a [routerLink]="['../transaction-group', transaction.transactionGroup?.id, 'view' ]" >{{transaction.transactionGroup?.name}}</a>
-                    </div>
-                </td>
-                <td>{{transaction.remark}}</td>
+                <td><a [routerLink]="['/exchange-entry', exchangeEntry.id, 'view' ]">{{exchangeEntry.id}}</a></td>
+                <td>{{exchangeEntry.description}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
-                                [routerLink]="['/transaction', transaction.id, 'view' ]"
+                                [routerLink]="['/exchange-entry', exchangeEntry.id, 'view' ]"
                                 class="btn btn-info btn-sm">
                             <fa-icon [icon]="'eye'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/transaction', transaction.id, 'edit']"
+                                [routerLink]="['/exchange-entry', exchangeEntry.id, 'edit']"
                                 class="btn btn-primary btn-sm">
                             <fa-icon [icon]="'pencil-alt'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'transaction/'+ transaction.id + '/delete'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'exchange-entry/'+ exchangeEntry.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">
@@ -97,7 +79,7 @@
             </tbody>
         </table>
     </div>
-    <div *ngIf="transactions && transactions.length">
+    <div *ngIf="exchangeEntries && exchangeEntries.length">
         <div class="row justify-content-center">
             <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>

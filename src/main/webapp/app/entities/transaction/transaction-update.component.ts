@@ -8,6 +8,8 @@ import {ITransaction} from 'app/shared/model/transaction.model';
 import {TransactionService} from './transaction.service';
 import {ITransactionGroup} from 'app/shared/model/transaction-group.model';
 import {TransactionGroupService} from 'app/entities/transaction-group';
+import {IExchangeEntry} from "app/shared/model/exchange-entry.model";
+import {ExchangeEntryService} from "app/entities/exchange-entry";
 
 @Component({
     selector: 'jhi-transaction-update',
@@ -18,12 +20,14 @@ export class TransactionUpdateComponent implements OnInit {
     isSaving: boolean;
 
     transactiongroups: ITransactionGroup[];
+    exchangeEntries: IExchangeEntry[];
     transactionDateDp: any;
 
     constructor(
         private jhiAlertService: JhiAlertService,
         private transactionService: TransactionService,
         private transactionGroupService: TransactionGroupService,
+        private exchangeEntryService: ExchangeEntryService,
         private activatedRoute: ActivatedRoute
     ) {}
 
@@ -35,6 +39,12 @@ export class TransactionUpdateComponent implements OnInit {
         this.transactionGroupService.query().subscribe(
             (res: HttpResponse<ITransactionGroup[]>) => {
                 this.transactiongroups = res.body;
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
+        this.exchangeEntryService.query().subscribe(
+            (res: HttpResponse<IExchangeEntry[]>) => {
+                this.exchangeEntries = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
@@ -70,9 +80,14 @@ export class TransactionUpdateComponent implements OnInit {
         this.jhiAlertService.error(errorMessage, null, null);
     }
 
+    trackExchangeEntryById(index: number, item: IExchangeEntry) {
+        return item.id;
+    }
+
     trackTransactionGroupById(index: number, item: ITransactionGroup) {
         return item.id;
     }
+
     get transaction() {
         return this._transaction;
     }

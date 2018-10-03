@@ -34,10 +34,16 @@ public class Transaction implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy.MM.dd")
     private LocalDate transactionDate;
 
+    @Column
+    private String remark;
+
     @NotNull
     @ManyToOne
     @JsonIgnoreProperties("transactions")
     private TransactionGroup transactionGroup;
+
+    @ManyToOne
+    private ExchangeEntry exchangeEntry;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -87,6 +93,32 @@ public class Transaction implements Serializable {
         this.transactionDate = transactionDate;
     }
 
+    public String getRemark() {
+        return remark;
+    }
+
+    public Transaction remark(String remark) {
+        this.remark = remark;
+        return this;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public ExchangeEntry getExchangeEntry() {
+        return exchangeEntry;
+    }
+
+    public Transaction exchangeEntry(ExchangeEntry exchangeEntry) {
+        this.exchangeEntry = exchangeEntry;
+        return this;
+    }
+
+    public void setExchangeEntry(ExchangeEntry exchangeEntry) {
+        this.exchangeEntry = exchangeEntry;
+    }
+
     public TransactionGroup getTransactionGroup() {
         return transactionGroup;
     }
@@ -128,6 +160,9 @@ public class Transaction implements Serializable {
             ", amountIn=" + getAmountIn() +
             ", amountOut=" + getAmountOut() +
             ", transactionDate='" + getTransactionDate() + "'" +
+            ", remark='" + getRemark() + "'" +
+            ", exchangeEntry.id=" + (getExchangeEntry() != null ? getExchangeEntry().getId().toString() : "null") +
+            ", transactionGroup.id=" + getTransactionGroup().getId().toString() +
             "}";
     }
 }

@@ -9,6 +9,7 @@
                 "main": "Entitások",
                 "currency": "Currency",
                 "userAccount": "User Account",
+                "exchangeEntry": "Exchange Entry",
                 "transactionGroup": "Transaction Group",
                 "transaction": "Transaction",
                 "deleteSelected": "Kiválasztott sorok törlése",

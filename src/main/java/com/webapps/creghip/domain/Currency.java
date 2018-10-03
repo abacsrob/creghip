@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A Currency.
@@ -26,9 +27,9 @@ public class Currency implements Serializable {
     @Column(name = "currency_name", length = 3, nullable = false)
     private String currencyName;
 
-    @OneToOne(mappedBy = "currency")
+    @OneToMany(mappedBy = "currency")
     @JsonIgnore
-    private UserAccount userAccount;
+    private Set<UserAccount> userAccounts;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -52,17 +53,17 @@ public class Currency implements Serializable {
         this.currencyName = currencyName;
     }
 
-    public UserAccount getUserAccount() {
-        return userAccount;
+    public Set<UserAccount> getUserAccounts() {
+        return userAccounts;
     }
 
-    public Currency userAccount(UserAccount userAccount) {
-        this.userAccount = userAccount;
+    public Currency userAccounts(Set<UserAccount> userAccount) {
+        this.userAccounts = userAccounts;
         return this;
     }
 
-    public void setUserAccount(UserAccount userAccount) {
-        this.userAccount = userAccount;
+    public void setUserAccounts(Set<UserAccount> userAccounts) {
+        this.userAccounts = userAccounts;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

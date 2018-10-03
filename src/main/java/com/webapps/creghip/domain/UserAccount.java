@@ -29,8 +29,7 @@ public class UserAccount implements Serializable {
     private String accountName;
 
     @NotNull
-    @OneToOne
-    @JoinColumn(unique = true)
+    @ManyToOne
     private Currency currency;
 
     @JsonIgnore

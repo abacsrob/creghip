@@ -1,0 +1,23 @@
+
+{
+    "exampleApp": {
+        "exchangeEntry" : {
+            "home": {
+                "title": "ExchangeEntries",
+                "createLabel": "Egy új Exchange Entry létrehozása",
+                "createOrEditLabel": "Hozzon létre, vagy módosítson Exchange Entryt"
+            },
+            "created": "Egy új Exchange Entry lett létrehozva {{ param }} azonosítóval",
+            "updated": "A Exchange Entry módosítva lett {{ param }} azonosítóval",
+            "deleted": "A Exchange Entry törölve lett {{ param }} azonosítóval",
+            "delete": {
+                "question": "Biztos benne, hogy törölni szeretné az Exchange Entryt {{ id }} azonosítóval?"
+            },
+            "detail": {
+                "title": "Exchange Entry"
+            },
+            "description": "Description",
+            "transaction": "Transaction"
+        }
+    }
+}

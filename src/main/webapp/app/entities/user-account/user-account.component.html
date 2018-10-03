@@ -7,15 +7,18 @@
             Create new User Account
             </span>
         </button>
-        <button id="delete-selected-rows"
-                class="btn btn-danger float-right delete-all-button"
-                [disabled]="selectedRowIds.length === 0"
-                type="submit"
-                [routerLink]="['/', { outlets: { popup: 'user-account/'+ selectedRowIds.join(',') + '/delete'} }]"
-                replaceUrl="true"
-                queryParamsHandling="merge">
-            <span jhiTranslate="global.menu.entities.deleteSelected"></span>
-        </button>
+        <!--<button id="delete-selected-rows"-->
+                <!--class="btn btn-danger float-right delete-all-button"-->
+                <!--[disabled]="selectedRowIds.length === 0"-->
+                <!--type="submit"-->
+                <!--[routerLink]="['/', { outlets: { popup: 'user-account/'+ selectedRowIds.join(',') + '/delete'} }]"-->
+                <!--replaceUrl="true"-->
+                <!--queryParamsHandling="merge">-->
+            <!--<span jhiTranslate="global.menu.entities.deleteSelected"></span>-->
+        <!--</button>-->
+        <jhi-batched-delete-button
+            [routerLink]="['/', { outlets: { popup: 'user-account/'+ selectedRowIds.join(',') + '/delete'} }]"
+            [disabled]="selectedRowIds.length === 0"></jhi-batched-delete-button>
     </h2>
     <jhi-alert></jhi-alert>
     <br/>

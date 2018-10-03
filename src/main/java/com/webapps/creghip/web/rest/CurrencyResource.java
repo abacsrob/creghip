@@ -23,7 +23,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 /**
  * REST controller for managing Currency.
@@ -93,14 +92,7 @@ public class CurrencyResource {
      */
     @GetMapping("/currencies")
     @Timed
-    public ResponseEntity<List<Currency>> getAllCurrencies(Pageable pageable, @RequestParam(required = false) String filter) {
-        if ("useraccount-is-null".equals(filter)) {
-            log.debug("REST request to get all Currencys where userAccount is null");
-            return new ResponseEntity<>(StreamSupport
-                .stream(currencyRepository.findAll().spliterator(), false)
-                .filter(currency -> currency.getUserAccount() == null)
-                .collect(Collectors.toList()), HttpStatus.OK);
-        }
+    public ResponseEntity<List<Currency>> getAllCurrencies(Pageable pageable) {
         log.debug("REST request to get a page of Currencies");
         Page<Currency> page = currencyRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/currencies");

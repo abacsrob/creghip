@@ -19,7 +19,9 @@
             "amountIn": "Amount In",
             "amountOut": "Amount Out",
             "transactionDate": "Transaction Date",
-            "transactionGroup": "Transaction Group"
+            "exchangeEntry": "Exchange Entry",
+            "transactionGroup": "Transaction Group",
+            "remark": "Remark"
         }
     }
 }

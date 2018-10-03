@@ -21,12 +21,26 @@
                 <dd>
                     <span>{{transaction.transactionDate | customDateFormat}}</span>
                 </dd>
+                <div [hidden]="!transaction.exchangeEntry">
+                    <dt><span jhiTranslate="creghipApp.transaction.exchangeEntry">Exchange Entry</span></dt>
+                    <dd>
+                        <div *ngIf="transaction.exchangeEntry">
+                            <a [routerLink]="['/exchange-entry', transaction.exchangeEntry?.id, 'view']">{{transaction.exchangeEntry?.description}}</a>
+                        </div>
+                    </dd>
+                </div>
                 <dt><span jhiTranslate="creghipApp.transaction.transactionGroup">Transaction Group</span></dt>
                 <dd>
                     <div *ngIf="transaction.transactionGroup">
                         <a [routerLink]="['/transaction-group', transaction.transactionGroup?.id, 'view']">{{transaction.transactionGroup?.name}}</a>
                     </div>
                 </dd>
+                <div [hidden]="!transaction.remark">
+                    <dt><span>Remark</span></dt>
+                    <dd>
+                        <span>{{transaction.remark}}</span>
+                    </dd>
+                </div>
             </dl>
 
             <button type="submit"

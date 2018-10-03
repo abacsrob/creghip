@@ -9,6 +9,7 @@
                 "main": "Entities",
                 "currency": "Currency",
                 "userAccount": "User Account",
+                "exchangeEntry": "Exchange Entry",
                 "transactionGroup": "Transaction Group",
                 "transaction": "Transaction",
                 "deleteSelected": "Delete selected rows",

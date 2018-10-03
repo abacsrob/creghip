@@ -4,20 +4,20 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {JhiAlertService, JhiEventManager, JhiParseLinks} from 'ng-jhipster';
 
-import {ITransactionGroup} from 'app/shared/model/transaction-group.model';
+import {IExchangeEntry} from 'app/shared/model/exchange-entry.model';
 import {Principal} from 'app/core';
 
 import {ITEMS_PER_PAGE} from 'app/shared';
-import {TransactionGroupService} from './transaction-group.service';
+import {ExchangeEntryService} from './exchange-entry.service';
 
 @Component({
-    selector: 'jhi-transaction-group',
-    templateUrl: './transaction-group.component.html',
+    selector: 'jhi-exchange-entry',
+    templateUrl: './exchange-entry.component.html',
     styleUrls: ['../entity.module.css']
 })
-export class TransactionGroupComponent implements OnInit, OnDestroy {
+export class ExchangeEntryComponent implements OnInit, OnDestroy {
     currentAccount: any;
-    transactionGroups: ITransactionGroup[];
+    exchangeEntries: IExchangeEntry[];
     error: any;
     success: any;
     eventSubscriber: Subscription;
@@ -33,7 +33,7 @@ export class TransactionGroupComponent implements OnInit, OnDestroy {
     selectedRowIds: number[] = [];
 
     constructor(
-        private transactionGroupService: TransactionGroupService,
+        private exchangeEntryService: ExchangeEntryService,
         private parseLinks: JhiParseLinks,
         private jhiAlertService: JhiAlertService,
         private principal: Principal,
@@ -51,14 +51,14 @@ export class TransactionGroupComponent implements OnInit, OnDestroy {
     }
 
     loadAll() {
-        this.transactionGroupService
+        this.exchangeEntryService
             .query({
                 page: this.page - 1,
                 size: this.itemsPerPage,
                 sort: this.sort()
             })
             .subscribe(
-                (res: HttpResponse<ITransactionGroup[]>) => this.paginateTransactionGroups(res.body, res.headers),
+                (res: HttpResponse<IExchangeEntry[]>) => this.paginateExchangeEntries(res.body, res.headers),
                 (res: HttpErrorResponse) => this.onError(res.message)
             );
     }
@@ -71,7 +71,7 @@ export class TransactionGroupComponent implements OnInit, OnDestroy {
     }
 
     transition() {
-        this.router.navigate(['/transaction-group'], {
+        this.router.navigate(['/exchange-entry'], {
             queryParams: {
                 page: this.page,
                 size: this.itemsPerPage,
@@ -84,7 +84,7 @@ export class TransactionGroupComponent implements OnInit, OnDestroy {
     clear() {
         this.page = 0;
         this.router.navigate([
-            '/transaction-group',
+            '/exchange-entry',
             {
                 page: this.page,
                 sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
@@ -98,19 +98,19 @@ export class TransactionGroupComponent implements OnInit, OnDestroy {
         this.principal.identity().then(account => {
             this.currentAccount = account;
         });
-        this.registerChangeInTransactionGroups();
+        this.registerChangeInExchangeEntries();
     }
 
     ngOnDestroy() {
         this.eventManager.destroy(this.eventSubscriber);
     }
 
-    trackId(index: number, item: ITransactionGroup) {
+    trackId(index: number, item: IExchangeEntry) {
         return item.id;
     }
 
-    registerChangeInTransactionGroups() {
-        this.eventSubscriber = this.eventManager.subscribe('transactionGroupListModification', response => this.loadAll());
+    registerChangeInExchangeEntries() {
+        this.eventSubscriber = this.eventManager.subscribe('exchangeEntryListModification', response => this.loadAll());
     }
 
     sort() {
@@ -121,11 +121,11 @@ export class TransactionGroupComponent implements OnInit, OnDestroy {
         return result;
     }
 
-    private paginateTransactionGroups(data: ITransactionGroup[], headers: HttpHeaders) {
+    private paginateExchangeEntries(data: IExchangeEntry[], headers: HttpHeaders) {
         this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
         this.queryCount = this.totalItems;
-        this.transactionGroups = data;
+        this.exchangeEntries = data;
     }
 
     private onError(errorMessage: string) {
@@ -154,15 +154,13 @@ export class TransactionGroupComponent implements OnInit, OnDestroy {
     selectAllRows(event) {
         this.selectedRowIds = [];
         if (event.checked) {
-            // const offset: number = (this.page - 1) * this.itemsPerPage;
             for (let i = 0; i < this.itemsPerPage; i++) {
-                if ((this.itemsPerPage > this.transactionGroups.length && i >= (this.transactionGroups.length % this.itemsPerPage))
-                    || (this.itemsPerPage <= this.transactionGroups.length && i >= this.itemsPerPage)) {
+                if ((this.itemsPerPage > this.exchangeEntries.length && i >= (this.exchangeEntries.length % this.itemsPerPage))
+                    || (this.itemsPerPage <= this.exchangeEntries.length && i >= this.itemsPerPage)) {
                     break;
                 }
-                this.selectedRowIds.push(this.transactionGroups[i].id);
+                this.selectedRowIds.push(this.exchangeEntries[i].id);
             }
         }
-        console.log('Selection updated: ' + this.selectedRowIds);
     }
 }

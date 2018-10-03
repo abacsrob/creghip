@@ -1,0 +1,24 @@
+
+{
+    "creghipApp": {
+        "exchangeEntry" : {
+            "home": {
+                "title": "Exchange Entries",
+                "createLabel": "Create a new Exchange Entry",
+                "createOrEditLabel": "Create or edit a Exchange Entry"
+            },
+            "created": "A new Exchange Entry is created with identifier {{ param }}",
+            "updated": "A Exchange Entry is updated with identifier {{ param }}",
+            "deleted": "A Exchange Entry is deleted with identifier {{ param }}",
+            "delete": {
+                "questionSingular": "Are you sure you want to delete the Exchange Entry with id ({{ id }})?",
+                "question": "Are you sure you want to delete the Exchange Entries with ids ({{ id }})?"
+            },
+            "detail": {
+                "title": "Exchange Entry"
+            },
+            "description": "Description",
+            "transaction": "Transaction"
+        }
+    }
+}

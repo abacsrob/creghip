@@ -6,6 +6,10 @@ entity UserAccount {
 	accountName String required maxlength(100)
 }
 
+entity ExchangeEntry {
+    description String maxlength(100)
+}
+
 entity TransactionGroup {
 	name String required maxlength(100)
 }
@@ -14,14 +18,19 @@ entity Transaction {
 	amountIn BigDecimal,
     amountOut BigDecimal,
     transactionDate LocalDate required,
+    remark String maxlength(100)
 }
 
-relationship OneToOne {
-	UserAccount to Currency
+relationship OneToMany {
+	Currency to UserAccount
 }
 
 relationship OneToMany {
 	UserAccount to TransactionGroup
+}
+
+relationship OneToMany {
+	ExchangeEntry to Transaction
 }
 
 relationship OneToMany {

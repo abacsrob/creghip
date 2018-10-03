@@ -4,6 +4,7 @@ import {CreghipCurrencyModule} from './currency/currency.module';
 import {CreghipUserAccountModule} from './user-account/user-account.module';
 import {CreghipTransactionGroupModule} from './transaction-group/transaction-group.module';
 import {CreghipTransactionModule} from './transaction/transaction.module';
+import {CreghipExchangeEntryModule} from 'app/entities/exchange-entry/exchange-entry.module';
 
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
@@ -12,6 +13,7 @@ import {CreghipTransactionModule} from './transaction/transaction.module';
     imports: [
         CreghipCurrencyModule,
         CreghipUserAccountModule,
+        CreghipExchangeEntryModule,
         CreghipTransactionGroupModule,
         CreghipTransactionModule
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */

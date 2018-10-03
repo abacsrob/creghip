@@ -6,16 +6,30 @@ import {CreghipSharedCommonModule, CreghipSharedLibsModule, HasAnyAuthorityDirec
 import {NgbDateParserFormatterCustom} from 'app/shared/util/ngb-date-parser-formatter-custom';
 import {CustomDatePipe} from 'app/shared/util/custom-date-pipe';
 import {PagesizeSelectorComponent} from 'app/shared/pagesize-selector/pagesize-selector.component';
+import {BatchedDeleteButtonComponent} from 'app/shared/batched-delete-components/batched-delete-button.component';
 
 @NgModule({
     imports: [CreghipSharedLibsModule, CreghipSharedCommonModule],
-    declarations: [JhiLoginModalComponent, HasAnyAuthorityDirective, CustomDatePipe, PagesizeSelectorComponent],
+    declarations: [
+        JhiLoginModalComponent,
+        HasAnyAuthorityDirective,
+        CustomDatePipe,
+        PagesizeSelectorComponent,
+        BatchedDeleteButtonComponent
+    ],
     providers: [
         {provide: NgbDateAdapter, useClass: NgbDateMomentAdapter},
         {provide: NgbDateParserFormatter, useClass: NgbDateParserFormatterCustom}
         ],
     entryComponents: [JhiLoginModalComponent],
-    exports: [CreghipSharedCommonModule, JhiLoginModalComponent, HasAnyAuthorityDirective, CustomDatePipe, PagesizeSelectorComponent],
+    exports: [
+        CreghipSharedCommonModule,
+        JhiLoginModalComponent,
+        HasAnyAuthorityDirective,
+        CustomDatePipe,
+        PagesizeSelectorComponent,
+        BatchedDeleteButtonComponent
+    ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CreghipSharedModule {}

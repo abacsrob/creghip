@@ -155,17 +155,9 @@ export class UserAccountComponent implements OnInit, OnDestroy {
         console.log(this.selectedRowIds);
     }
 
-    deleteSelectedRows() {
-        console.log('In deleteSelectedRows() with ' + this.selectedRowIds.join(','));
-        // this.userAccountService.deleteByIds(this.selectedRowIds);
-        this.selectedRowIds = [];
-        this.loadAll();
-    }
-
     selectAllRows(event) {
         this.selectedRowIds = [];
         if (event.checked) {
-            // const offset: number = (this.page - 1) * this.itemsPerPage;
             for (let i = 0; i < this.itemsPerPage; i++) {
                 if ((this.itemsPerPage > this.userAccounts.length && i >= (this.userAccounts.length % this.itemsPerPage))
                     || (this.itemsPerPage <= this.userAccounts.length && i >= this.itemsPerPage)) {

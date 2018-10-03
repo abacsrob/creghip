@@ -151,17 +151,9 @@ export class CurrencyComponent implements OnInit, OnDestroy {
         console.log(this.selectedRowIds);
     }
 
-    deleteSelectedRows() {
-        console.log('In deleteSelectedRows() with ' + this.selectedRowIds.join(','));
-        // this.userAccountService.deleteByIds(this.selectedRowIds);
-        this.selectedRowIds = [];
-        this.loadAll();
-    }
-
     selectAllRows(event) {
         this.selectedRowIds = [];
         if (event.checked) {
-            // const offset: number = (this.page - 1) * this.itemsPerPage;
             for (let i = 0; i < this.itemsPerPage; i++) {
                 if ((this.itemsPerPage > this.currencies.length && i >= (this.currencies.length % this.itemsPerPage))
                     || (this.itemsPerPage <= this.currencies.length && i >= this.itemsPerPage)) {
@@ -170,6 +162,5 @@ export class CurrencyComponent implements OnInit, OnDestroy {
                 this.selectedRowIds.push(this.currencies[i].id);
             }
         }
-        console.log('Selection updated: ' + this.selectedRowIds);
     }
 }
