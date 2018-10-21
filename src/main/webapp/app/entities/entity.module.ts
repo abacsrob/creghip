@@ -5,6 +5,8 @@ import {CreghipUserAccountModule} from './user-account/user-account.module';
 import {CreghipTransactionGroupModule} from './transaction-group/transaction-group.module';
 import {CreghipTransactionModule} from './transaction/transaction.module';
 import {CreghipExchangeEntryModule} from 'app/entities/exchange-entry/exchange-entry.module';
+import {Observable} from 'rxjs';
+import {HttpResponse} from '@angular/common/http';
 
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
@@ -24,3 +26,11 @@ import {CreghipExchangeEntryModule} from 'app/entities/exchange-entry/exchange-e
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CreghipEntityModule {}
+
+export interface IAutocompleteable {
+    autocompletableItem: string;
+}
+
+export interface IAutocompleteService {
+    getAutocompleteObservable(): Observable<HttpResponse<IAutocompleteable[]>>;
+}

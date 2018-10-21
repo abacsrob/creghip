@@ -8,6 +8,7 @@ import {ICurrency} from 'app/shared/model/currency.model';
 import {CurrencyService} from './currency.service';
 import {IUserAccount} from 'app/shared/model/user-account.model';
 import {UserAccountService} from 'app/entities/user-account';
+import {IAutocompleteService} from 'app/entities/entity.module';
 
 @Component({
     selector: 'jhi-currency-update',
@@ -37,6 +38,10 @@ export class CurrencyUpdateComponent implements OnInit {
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
+    }
+
+    getCurrencyService(): IAutocompleteService {
+        return this.currencyService;
     }
 
     previousState() {

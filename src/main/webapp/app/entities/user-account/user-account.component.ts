@@ -9,6 +9,7 @@ import {Principal} from 'app/core';
 
 import {ITEMS_PER_PAGE} from 'app/shared';
 import {UserAccountService} from './user-account.service';
+import {IAutocompleteService} from "app/entities/entity.module";
 
 @Component({
     selector: 'jhi-user-account',
@@ -68,6 +69,10 @@ export class UserAccountComponent implements OnInit, OnDestroy {
             this.previousPage = page;
             this.transition();
         }
+    }
+
+    getService(): IAutocompleteService {
+        return this.userAccountService;
     }
 
     transition() {

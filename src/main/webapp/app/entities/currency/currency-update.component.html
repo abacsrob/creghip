@@ -24,7 +24,10 @@
                         </small>
                     </div>
                 </div>
-
+                <jhi-autocomplete label="creghipApp.currency.currencyName"
+                                  targetFieldName="currencyName"
+                                  [resultObservable]="getCurrencyService()"
+                                  [elementRef]="self" #self></jhi-autocomplete>
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

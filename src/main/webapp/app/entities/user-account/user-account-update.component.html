@@ -24,7 +24,6 @@
                         </small>
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="creghipApp.userAccount.currency" for="field_currency">Currency</label>
                     <select class="form-control" id="field_currency" name="currency" [(ngModel)]="userAccount.currency">
@@ -32,6 +31,10 @@
                         <option [ngValue]="currencyOption.id === userAccount.currency?.id ? userAccount.currency : currencyOption" *ngFor="let currencyOption of currencies; trackBy: trackCurrencyById">{{currencyOption.currencyName}}</option>
                     </select>
                 </div>
+                <jhi-autocomplete label="creghipApp.userAccount.accountName"
+                                  targetFieldName="accountName"
+                                  [resultObservable]="getUserAccountService()"
+                                  [elementRef]="self" #self></jhi-autocomplete>
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

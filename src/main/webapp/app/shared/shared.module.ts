@@ -7,6 +7,7 @@ import {NgbDateParserFormatterCustom} from 'app/shared/util/ngb-date-parser-form
 import {CustomDatePipe} from 'app/shared/util/custom-date-pipe';
 import {PagesizeSelectorComponent} from 'app/shared/pagesize-selector/pagesize-selector.component';
 import {BatchedDeleteButtonComponent} from 'app/shared/batched-delete-components/batched-delete-button.component';
+import {AutocompleteComponent} from 'app/shared/autocomplete/autocomplete.component';
 
 @NgModule({
     imports: [CreghipSharedLibsModule, CreghipSharedCommonModule],
@@ -15,7 +16,8 @@ import {BatchedDeleteButtonComponent} from 'app/shared/batched-delete-components
         HasAnyAuthorityDirective,
         CustomDatePipe,
         PagesizeSelectorComponent,
-        BatchedDeleteButtonComponent
+        BatchedDeleteButtonComponent,
+        AutocompleteComponent
     ],
     providers: [
         {provide: NgbDateAdapter, useClass: NgbDateMomentAdapter},
@@ -28,7 +30,8 @@ import {BatchedDeleteButtonComponent} from 'app/shared/batched-delete-components
         HasAnyAuthorityDirective,
         CustomDatePipe,
         PagesizeSelectorComponent,
-        BatchedDeleteButtonComponent
+        BatchedDeleteButtonComponent,
+        AutocompleteComponent
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

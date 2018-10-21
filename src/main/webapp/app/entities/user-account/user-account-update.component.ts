@@ -8,6 +8,7 @@ import {IUserAccount} from 'app/shared/model/user-account.model';
 import {UserAccountService} from './user-account.service';
 import {ICurrency} from 'app/shared/model/currency.model';
 import {CurrencyService} from 'app/entities/currency';
+import {IAutocompleteService} from "app/entities/entity.module";
 
 @Component({
     selector: 'jhi-user-account-update',
@@ -46,6 +47,10 @@ export class UserAccountUpdateComponent implements OnInit {
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
+    }
+
+    getUserAccountService(): IAutocompleteService {
+        return this.userAccountService;
     }
 
     previousState() {

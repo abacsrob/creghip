@@ -35,8 +35,18 @@
                            [checked]="selectedRowIds.length >= userAccounts.length">
                 </div>
             </th>
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="accountName"><span jhiTranslate="creghipApp.userAccount.accountName">Account Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="id">
+                <span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon>
+                <!--<jhi-autocomplete targetFieldName="id"
+                                  [resultObservable]="getService()"
+                                  [elementRef]="self" #self></jhi-autocomplete>-->
+            </th>
+            <th jhiSortBy="accountName">
+                <span jhiTranslate="creghipApp.userAccount.accountName">Account Name</span> <fa-icon [icon]="'sort'"></fa-icon>
+                <!--<jhi-autocomplete targetFieldName="accountName"
+                                  [resultObservable]="getService()"
+                                  [elementRef]="self" #self></jhi-autocomplete>-->
+            </th>
             <th jhiSortBy="currency.currencyName"><span jhiTranslate="creghipApp.userAccount.currency">Currency</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>

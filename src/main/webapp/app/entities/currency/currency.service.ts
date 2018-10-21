@@ -5,12 +5,13 @@ import {Observable} from 'rxjs';
 import {SERVER_API_URL} from 'app/app.constants';
 import {createRequestOption} from 'app/shared';
 import {ICurrency} from 'app/shared/model/currency.model';
+import {IAutocompleteable, IAutocompleteService} from 'app/entities/entity.module';
 
 type EntityResponseType = HttpResponse<ICurrency>;
 type EntityArrayResponseType = HttpResponse<ICurrency[]>;
 
 @Injectable({ providedIn: 'root' })
-export class CurrencyService {
+export class CurrencyService implements IAutocompleteService {
     private resourceUrl = SERVER_API_URL + 'api/currencies';
 
     constructor(private http: HttpClient) {}
@@ -38,5 +39,10 @@ export class CurrencyService {
 
     deleteByIds(ids: number[]): Observable<HttpResponse<any>> {
         return this.http.delete<any>(`${this.resourceUrl}/batched/${ids.join(',')}`, { observe: 'response' });
+    }
+
+    getAutocompleteObservable(req?: any): Observable<HttpResponse<IAutocompleteable[]>> {
+        const options = createRequestOption(req);
+        return this.http.get<IAutocompleteable[]>(this.resourceUrl, { params: options, observe: 'response' });
     }
 }
